@@ -2,10 +2,10 @@ import {Map} from 'immutable'
 
 const board = Map();
 
-const move = (turn, position) => ({
- type: 'MOVE',
- turn: turn,
- position: position,
+export const move = (turn, position) => ({
+  type: 'MOVE',
+  turn: turn,
+  position: position
 });
 
 export default function reducer(state = {turn: 'X', board: board}, action) {
@@ -13,9 +13,7 @@ export default function reducer(state = {turn: 'X', board: board}, action) {
     case 'START':
       return state;
     case 'MOVE':
-      console.log('hello!!!!!!!!!');
-      board.setIn(action.position, action.turn);
-      return {...state, turn: action.turn === 'X' ? 'O' : 'X'};
+      return {turn: action.turn === 'X' ? 'O' : 'X', board: state.board.setIn(action.position, action.turn)};
     default:
       return state;
   }

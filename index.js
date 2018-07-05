@@ -2,6 +2,7 @@ import inquirer from 'inquirer'
 
 import gameReducer, {move} from './game'
 import {createStore} from 'redux'
+import { SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'constants';
 
 const printBoard = () => {
   const {board} = game.getState()
@@ -23,6 +24,8 @@ const getInput = player => async () => {
   }])
   const [row=0, col=0] = ans.coord.split(/[,\s+]/).map(x => +x)
   console.log('hello there')
+  console.log(game)
+  console.log(move)
   game.dispatch(move(turn, [row, col]))
 }
 
